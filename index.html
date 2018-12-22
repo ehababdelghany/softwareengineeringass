@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html >
+  <head>
+
+    <title>Cover designer</title>
+
+	<link rel="stylesheet" href="style.css" >
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="script.js"></script>
+
+  </head>
+  <body>
+    <h2>Design your cover</h2>
+    <br><br>
+    <div class="inputt">
+      <table width="90%">
+        <tr>
+          <td width="30%">Book title</td>
+          <td width="70%">
+            <input type="text" name="" id="booktitle">
+        </td>
+        </tr>
+
+        <tr>
+          <td width="30%">book subtitle</td>
+          <td width="70%">
+            <input type="text" name="" id="booksubtitle">
+        </td>
+        </tr>
+        <tr>
+          <td width="30%">Authur name</td>
+          <td width="70%">
+            <input type="text" name="" id="name">
+        </td>
+        </tr><br>
+
+        <tr>
+          <td width="30%">background color</td>
+          <td width="70%">
+            <input type="text" name="" id="color">
+          </td>
+        </tr>
+
+        <tr>
+          <td width="30%">publisher</td>
+          <td width="70%">
+            <input type="text" name="" id="publisher">
+        </td>
+        </tr>
+
+        <tr>
+          <td width="30%">publishing date</td>
+          <td width="70%">
+            <input type="date" id="date">
+          </td>
+        </tr>
+
+
+
+
+      </table>
+ <input type="button" onclick="Generate()" value="Generate">
+
+    </div>
+
+
+    <div class="cover" id="cover">
+      <h1 id="a">booktitle</h1>
+      <h2 id="b">booksubtitle</h2>
+      <br>
+      <br><br><br>
+      <h2 id="c">Authur</h2>
+
+      <h2 id="d">publisher</h2>
+      <h2 id="e">date</h2>
+    </div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,28 @@
+.inputt {float: left;
+  width: 42%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+  height:90%;
+ }
+ .cover {float: right;
+   width: 350px;
+   border: 5px solid black;
+   padding: 50px;
+   height:450px;
+   background-color: lightyellow;
+  }
+
+
+  td{
+	background-color: #b3ffb3;
+
+  height: 50px;
+  font-size: 20px;
+}
+h1{
+  text-align: center;
+
+}
+h2  {text-align: center;}
+input {width: 95%;
+height:auto;}
