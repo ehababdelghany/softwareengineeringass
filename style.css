@@ -1,8 +1,16 @@
+body {
+    background-image: url("692641848-612x612.jpg");
+    background-color: #cccccc;
+    height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .inputt {float: left;
   width: 42%;
   border: 3px solid #73AD21;
   padding: 10px;
-  height:90%;
+  height:450px;
  }
  .cover {float: right;
    width: 350px;
