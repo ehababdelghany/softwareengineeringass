@@ -7,6 +7,9 @@ pipeline {
             steps{
             
                 echo 'building the application'
+                nodejs('node V16.3.0'){
+                sh 'yarn install'
+                }
             
              }        
         }
