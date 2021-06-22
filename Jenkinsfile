@@ -27,14 +27,7 @@ pipeline {
         }
     
     }
-    post{
-        always{
-        }
-        failure{
-        echo 'failed'
-        }
-    
-    }
+ 
 
 }
 
