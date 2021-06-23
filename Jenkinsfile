@@ -10,7 +10,7 @@ pipeline {
              nodejs('nodejs16')
                  {
                     sh 'node -v'
-                    sh 'npm install express -s'
+                    //sh 'yarn install'
                  }
              }        
         }
