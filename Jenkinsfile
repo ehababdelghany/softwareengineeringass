@@ -1,5 +1,8 @@
 pipeline {
-    
+     environment {
+    registry = "eabdelghany/jenkins_test"
+    registryCredential = 'dockerhub'
+  }
     agent any 
     
     stages{
@@ -8,7 +11,7 @@ pipeline {
             
                 echo 'building the application'
                 sh 'pwd'
-                sh 'docker images'
+               // sh 'docker images'
             
              }        
         }
@@ -32,6 +35,9 @@ pipeline {
             steps{
             
                 echo 'deploying the application'
+                script {
+          docker.build registry + ":$BUILD_NUMBER"
+        }
             
              }        
         }
