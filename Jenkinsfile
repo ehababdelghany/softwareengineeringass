@@ -8,9 +8,9 @@ pipeline {
             
                 echo 'building the application'
                 nodejs('node V16.3.0'){
-             
-                sh 'npm install express -s'
-                sh 'ifconfig'
+                
+                sh 'npm install express -s
+                sh 'pwd'
                 sh 'node index.js'
                 }
             
