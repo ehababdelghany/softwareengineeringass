@@ -13,7 +13,7 @@ pipeline {
 
                 //sh 'npm install express -s'
                 sh 'pwd'
-                sh 'docker images'
+                //sh 'docker images'
                 //sh 'docker build -t myapp:1.0 .'
                 }
                     
