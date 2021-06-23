@@ -1,8 +1,5 @@
 pipeline {
-     environment {
-    registry = "eabdelghany/jenkins_test"
-    registryCredential = 'dockerhub'
-  }
+    
     agent any 
     
     stages{
@@ -10,13 +7,6 @@ pipeline {
             steps{
             
                 echo 'building the application'
-                sh 'pwd'
-                 nodejs('nodejs16')
-                 {
-                    sh 'node -v'
-                    sh 'npm install express'
-                 }
-               // sh 'docker images'
             
              }        
         }
@@ -35,20 +25,7 @@ pipeline {
             
              }        
         }
-        
-        stage("E2E TESTING"){
-            steps{
-            
-                echo 'deploying the application'
-       
-            
-             }        
-        }
     
     }
- 
-
+   
 }
-
-
-
