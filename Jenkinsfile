@@ -8,7 +8,9 @@ pipeline {
             
                 echo 'building the application'
                 nodejs('node V16.3.0'){
-                sh 'yarn install'
+                sh 'npm init --yes'
+                sh 'npm install express -s'
+                sh 'node index.js'
                 }
             
              }        
