@@ -7,6 +7,8 @@ pipeline {
             steps{
             
                 echo 'building the application'
+                sh 'pwd'
+                sh 'docker images'
             
              }        
         }
