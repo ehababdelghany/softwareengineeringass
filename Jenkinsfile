@@ -25,6 +25,14 @@ pipeline {
             
              }        
         }
+        
+        stage("E2E TESTING"){
+            steps{
+            
+                echo 'deploying the application'
+            
+             }        
+        }
     
     }
  
