@@ -11,7 +11,8 @@ pipeline {
                 
                 sh 'npm install express -s'
                 sh 'pwd'
-                sh 'node index.js'
+                sh 'docker images'
+                sh 'docker build -t myapp:1.0 .'
                 }
             
              }        
