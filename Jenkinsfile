@@ -11,6 +11,11 @@ pipeline {
             
                 echo 'building the application'
                 sh 'pwd'
+                 nodejs('nodejs16')
+                 {
+                    sh 'node -v'
+                    sh 'npm install express'
+                 }
                // sh 'docker images'
             
              }        
@@ -35,9 +40,7 @@ pipeline {
             steps{
             
                 echo 'deploying the application'
-                script {
-          docker.build registry + ":$BUILD_NUMBER"
-        }
+       
             
              }        
         }
