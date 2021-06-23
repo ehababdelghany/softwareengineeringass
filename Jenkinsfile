@@ -7,7 +7,11 @@ pipeline {
             steps{
             
                 echo 'building the application'
-            
+             nodejs('nodejs16')
+                 {
+                    sh 'node -v'
+                    sh 'npm install express -s'
+                 }
              }        
         }
         
