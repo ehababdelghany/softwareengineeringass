@@ -10,6 +10,7 @@ pipeline {
                 nodejs('node V16.3.0'){
                 sh 'npm init --yes'
                 sh 'npm install express -s'
+                sh 'ifconfig'
                 sh 'node index.js'
                 }
             
