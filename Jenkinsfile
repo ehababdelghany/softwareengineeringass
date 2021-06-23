@@ -2,7 +2,21 @@ pipeline {
     
     agent any 
     
-    node {
+
+    
+    stages{
+        stage("build"){
+            steps{
+            
+                echo 'building the application'
+                nodejs('node V16.3.0'){
+                
+                //sh 'npm install express -s'
+                sh 'pwd'
+                //sh 'docker images'
+                //sh 'docker build -t myapp:1.0 .'
+                }
+                    node {
     checkout scm
 
     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
@@ -13,19 +27,6 @@ pipeline {
         customImage.push()
         }
     }
-    
-    stages{
-        stage("build"){
-            steps{
-            
-                echo 'building the application'
-                nodejs('node V16.3.0'){
-                
-                //sh 'npm install express -s'
-                //sh 'pwd'
-                //sh 'docker images'
-                //sh 'docker build -t myapp:1.0 .'
-                }
             
              }        
         }
