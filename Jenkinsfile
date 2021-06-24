@@ -30,6 +30,8 @@ pipeline {
              }        
         }
         stage("deploy"){
+            
+            steps{
             node {
     checkout scm
 
@@ -41,8 +43,6 @@ pipeline {
         customImage.push()
     }
 }
-            steps{
-            
                 echo 'deploying the application'
            
              }        
