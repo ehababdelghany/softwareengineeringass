@@ -7,7 +7,9 @@ pipeline {
         stage("build"){
             steps{
             
-                echo 'building the application22'
+                echo 'building docker image'
+                echo 'pulling repo from dockerhub'
+                echo 'building docker image'
              nodejs('nodejs16')
                  {
                     sh 'node -v'
@@ -16,17 +18,25 @@ pipeline {
              }        
         }
         
-        stage("test"){
+        stage("unit test"){
             steps{
             
-                echo 'testing the application'
+                echo 'unit testing the application'
+            
+             }        
+        }
+        
+        stage("E2E test"){
+            steps{
+            
+                echo 'unit testing the application'
             
              }        
         }
         stage("deploy"){
             steps{
             
-                echo 'deploying the application'
+                echo 'deploying the application on AWS-EC2-INSTANCE'
             
              }        
         }
