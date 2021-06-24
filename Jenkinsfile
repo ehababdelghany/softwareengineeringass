@@ -1,9 +1,7 @@
 
 pipeline {
     
-      agent any{
-        docker { image 'node:14-alpine' }
-    }
+   
     
     stages{
         stage("build"){
@@ -25,7 +23,17 @@ pipeline {
             steps{
             
                 echo 'deploying the application'
-            
+            node {
+    checkout scm
+
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+
+        def customImage = docker.build("my-image:${env.BUILD_ID}")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
+    }
+}
              }        
         }
     
