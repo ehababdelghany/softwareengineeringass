@@ -9,18 +9,20 @@ pipeline {
             
                 echo 'building the application22'
                 
+                 nodejs('nodejs16')
+                 {
+                    sh 'node -v'
+                    sh 'yarn install'
+                    sh 'npm install express'
+                    sh 'node -v'
+                 }
+                
              }        
         }
         
         stage("test"){
             
-             agent {
-    docker {
-        image 'maven:3-alpine'
-        label 'my-defined-label'
-        args  '-v /tmp:/tmp'
-    }
-}
+           
             steps{
             
                 echo 'testing the application'
