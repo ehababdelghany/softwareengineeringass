@@ -8,11 +8,11 @@ pipeline {
             steps{
             
                 echo 'building the application22'
-             nodejs('nodejs16')
-                 {
-                    sh 'node -v'
-                    //sh 'yarn install'
-                 }
+                git credentialsId: 'github', url: 'https://github.com/ehababdelghany/my-app.git'
+               sh 'pwd'
+               sh 'node -v'
+               sh 'npm install'
+                sh 'ls -l'
              }        
         }
         
