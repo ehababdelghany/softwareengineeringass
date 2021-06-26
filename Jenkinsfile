@@ -1,7 +1,9 @@
 
 node {
-
-        def build_no = 1.1   //${build_no}
+    try {
+          def build_no = 1.1                    //${build_no}
+          def user_name='ubuntu'                //${user_name}
+          def deployment_ip='3.249.72.71'       //${deployment_ip}
         
         stage('Build') {
           
@@ -10,27 +12,28 @@ node {
                 sh 'pwd'
                 sh 'ls -l'
                 sh 'node -v'
+               
                 sh 'npm install'
                 sh 'ls -l'
-                //sh 'docker rmi $(docker images -q)'
-                //sh "docker build -t eabdelghany/myapp:${build_no} ."
-                //withCredentials([string(credentialsId: 'dockerhubb', variable: 'dockerhubPwd')]) { 
-                  //  sh "docker login --username=eabdelghany --password=${dockerhubPwd}"
-                //}
+                sh 'docker rmi $(docker images -q)'
+                sh "docker build -t eabdelghany/myapp:${build_no} ."
+                withCredentials([string(credentialsId: 'dockerhubb', variable: 'dockerhubPwd')]) { 
+                    sh "docker login --username=eabdelghany --password=${dockerhubPwd}"
+                }
                 
                 
-                //sh "docker push eabdelghany/myapp:${build_no}"
+                sh "docker push eabdelghany/myapp:${build_no}"
                 sh 'docker images'
 
         }
          stage('Test') {
          
             echo 'testing the application'
-            sh 'ls -l'
-
+            echo 'testcases code runs here'
+            //sh 'echo "Fail!"; exit 1'
             //sh 'mvn clean compile'
             //sh 'mvn test'
-            //junit '**/target/surefire-reports/TEST-*.xml'
+            //
            
             
         }
@@ -43,22 +46,32 @@ node {
 
         sshagent(credentials: ['ubuntu'], ignoreMissing: true) {
             
-            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 3.249.72.71 /home/ubuntu/ehab/kill.sh'
+            sh "ssh -o StrictHostKeyChecking=no -l ${user_name} ${deployment_ip} /home/ubuntu/ehab/kill.sh"
 
-            sh "ssh -o StrictHostKeyChecking=no -l ubuntu 3.249.72.71 ${run_cmd}"
+            sh "ssh -o StrictHostKeyChecking=no -l ${user_name} ${deployment_ip} ${run_cmd}"
         }
          
          
-        // sh 'docker run -d myapp:1.0'
+        
         }
         
          stage('E2E TEST'){
-   
-         sh 'docker ps'
-         //sh 'docker run eabelghany/docker:lts'
+            echo 'testing the application'
+
         }
         
+        echo 'successful, sending mail'
+        emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:<br> Check console output at $BUILD_URL to view the results.<br><br> Build LOGS:<br> ${BUILD_LOG, maxLines=9999, escapeHtml=false} ,', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'eabdelghany1996@gmail.com' 
+        //mail bcc: '', body: "build success no $BUILD_NUMBER logs ", cc: '', from: '', replyTo: '', subject: 'myApp: built successfully', to: 'eabdelghany1996@gmail.com'
+    } catch (e) {
+        echo 'This will run only if failed'
+        emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - FAILED:<br> Check console output at $BUILD_URL to view the results.<br><br> Build LOGS:<br> ${BUILD_LOG, maxLines=9999, escapeHtml=false} ', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - FAILED!', to: 'eabdelghany1996@gmail.com' 
+
+        throw e
+    } finally {
         
-        
-    
+
+        //junit '**/target/surefire-reports/TEST-*.xml'
+    }
 }
+
