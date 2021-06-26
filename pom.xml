@@ -7,6 +7,8 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
+		
+		
 	</parent>
 	<groupId>com.coralogix</groupId>
 	<artifactId>calculator</artifactId>
