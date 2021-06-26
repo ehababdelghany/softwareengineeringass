@@ -1,9 +1,10 @@
 
 node {
     try {
-          def build_no = 1.1                    //${build_no}
+          def build_no = 1.2                    //${build_no}
           def user_name='ubuntu'                //${user_name}
           def deployment_ip='3.249.72.71'       //${deployment_ip}
+          def deployment_ip2='3.249.79.142'       //${deployment_ip2}
         
         stage('Build') {
           
@@ -45,10 +46,14 @@ node {
         def run_cmd = "docker run -d -p 3000:3000 eabdelghany/myapp:${build_no}" 
 
         sshagent(credentials: ['ubuntu'], ignoreMissing: true) {
-            
+            echo 'deploying in node 1'
             sh "ssh -o StrictHostKeyChecking=no -l ${user_name} ${deployment_ip} /home/ubuntu/ehab/kill.sh"
 
             sh "ssh -o StrictHostKeyChecking=no -l ${user_name} ${deployment_ip} ${run_cmd}"
+            echo 'deploying in node 2'
+            sh "ssh -o StrictHostKeyChecking=no -l ${user_name} ${deployment_ip2} /home/ubuntu/ehab/kill.sh"
+
+            sh "ssh -o StrictHostKeyChecking=no -l ${user_name} ${deployment_ip2} ${run_cmd}"
         }
          
          
